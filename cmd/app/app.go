@@ -1,13 +1,21 @@
 package main
 
-import "github.com/iivkis/place-chat/user-service/internal/repo"
+import (
+	grpc_ctrl "github.com/place-chat/user-service/internal/controller/grpc"
+	"github.com/place-chat/user-service/internal/repo"
+	"github.com/place-chat/user-service/internal/service"
+)
 
 func main() {
-	_repo := repo.NewRepo(&repo.DBConfig{
+	_repo := repo.NewAdapter(&repo.DBConfig{
 		Database: "place-chat",
 		User:     "app",
 		Password: "12345678",
 		Host:     "localhost",
 		Port:     5432,
 	})
+
+	_service := service.NewAdapter(_repo)
+
+	_grpc := grpc_ctrl.NewAdatper(_service)
 }

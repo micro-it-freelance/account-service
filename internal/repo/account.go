@@ -19,7 +19,7 @@ type AccountCreateArgs struct {
 	Fullname   string `db:"fullname"`
 }
 
-func (r *Repo) AccountCreate(ctx context.Context, args *AccountCreateArgs) (AccountModel, error) {
+func (r *Adapter) AccountCreate(ctx context.Context, args *AccountCreateArgs) (AccountModel, error) {
 	query := `
 		INSERT INTO accounts (telegram_id, username, fullname)
 		VALUES (:telegram_id, :username, :fullname)
