@@ -1,9 +1,9 @@
 package main
 
 import (
-	grpc_ctrl "github.com/place-chat/user-service/internal/controller/grpc"
-	"github.com/place-chat/user-service/internal/repo"
-	"github.com/place-chat/user-service/internal/service"
+	grpc_ctrl "github.com/place-chat/account-service/internal/controller/grpc"
+	"github.com/place-chat/account-service/internal/repo"
+	"github.com/place-chat/account-service/internal/service"
 )
 
 func main() {

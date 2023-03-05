@@ -1,4 +1,4 @@
-module github.com/place-chat/user-service
+module github.com/place-chat/account-service
 
 go 1.19
 
