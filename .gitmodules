@@ -1,0 +1,3 @@
+[submodule "submodules/protoc"]
+	path = submodules/protoc
+	url = https://github.com/place-chat/protoc
