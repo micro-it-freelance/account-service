@@ -3,9 +3,11 @@ package service
 import "github.com/place-chat/account-service/internal/repo"
 
 type Adapter struct {
-	repo *repo.Adapter
+	Repo *repo.Adapter
 }
 
-func NewAdapter(repo *repo.Adapter) *Adapter {
-	return &Adapter{repo}
+func NewAdapter(Repo *repo.Adapter) *Adapter {
+	return &Adapter{
+		Repo: Repo,
+	}
 }

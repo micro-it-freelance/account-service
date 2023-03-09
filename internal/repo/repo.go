@@ -21,6 +21,7 @@ type Adapter struct {
 
 func NewAdapter(c *DBConfig) *Adapter {
 	source := fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable", c.Database, c.User, c.Password, c.Host, c.Port)
+	
 	db, err := sqlx.Connect("pgx", source)
 	if err != nil {
 		panic(err)
