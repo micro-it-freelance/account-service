@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net"
+	"os"
 
 	grpc_ctrl "github.com/place-chat/account-service/internal/controller/grpc"
 	"github.com/place-chat/account-service/internal/repo"
@@ -11,6 +13,8 @@ import (
 )
 
 func main() {
+	fmt.Println(os.Environ())
+
 	Repo := repo.NewAdapter(&repo.DBConfig{
 		Database: "place-chat",
 		User:     "app",
