@@ -1,4 +1,4 @@
-module github.com/place-chat/account-service
+module github.com/micro-it-freelance/account-service
 
 go 1.19
 

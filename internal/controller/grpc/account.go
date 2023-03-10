@@ -3,8 +3,8 @@ package grpc_ctrl
 import (
 	"context"
 
-	"github.com/place-chat/account-service/internal/repo"
-	"github.com/place-chat/account-service/submodules/protoc/go/account_service"
+	"github.com/micro-it-freelance/account-service/internal/repo"
+	"github.com/micro-it-freelance/account-service/submodules/protoc/go/account_service"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

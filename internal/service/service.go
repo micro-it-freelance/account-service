@@ -1,6 +1,6 @@
 package service
 
-import "github.com/place-chat/account-service/internal/repo"
+import "github.com/micro-it-freelance/account-service/internal/repo"
 
 type Adapter struct {
 	Repo *repo.Adapter
