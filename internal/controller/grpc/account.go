@@ -13,7 +13,6 @@ func (a *Adapter) AccountCreate(ctx context.Context, in *account_service.Account
 	account, err := a.Service.AccountCreate(ctx, repo.AccountCreateArgs{
 		TelegramID: in.TelegramId,
 		Username:   in.Username,
-		Fullname:   in.Fullname,
 	})
 
 	if err != nil {
