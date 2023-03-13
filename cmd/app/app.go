@@ -7,7 +7,6 @@ import (
 	grpc_ctrl "github.com/micro-it-freelance/account-service/internal/controller/grpc"
 	"github.com/micro-it-freelance/account-service/internal/repo"
 	"github.com/micro-it-freelance/account-service/internal/service"
-	"github.com/micro-it-freelance/account-service/submodules/protoc/out/account_service"
 	"google.golang.org/grpc"
 )
 

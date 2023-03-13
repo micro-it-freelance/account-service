@@ -2,7 +2,7 @@ package grpc_ctrl
 
 import (
 	"github.com/micro-it-freelance/account-service/internal/service"
-	"github.com/micro-it-freelance/account-service/submodules/protoc/out/account_service"
+	"github.com/micro-it-freelance/protoc/out/account_service"
 )
 
 type Adapter struct {
