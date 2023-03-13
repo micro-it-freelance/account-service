@@ -5,7 +5,7 @@ import (
 
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
-	"github.com/micro-it-freelance/account-service/internal/config"
+	"github.com/micro-it-freelance/config"
 )
 
 type Adapter struct {
