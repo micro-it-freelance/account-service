@@ -1,31 +1,41 @@
 package main
 
 import (
+	"fmt"
 	"net"
 
-	grpc_ctrl "github.com/micro-it-freelance/account-service/internal/controller/grpc"
-	"github.com/micro-it-freelance/account-service/internal/repo"
-	"github.com/micro-it-freelance/account-service/internal/service"
+	"github.com/jmoiron/sqlx"
+	"github.com/micro-it-freelance/account-service/internal/app/account"
+	"github.com/micro-it-freelance/config"
 	"github.com/micro-it-freelance/protoc/out/account_service"
 	"google.golang.org/grpc"
-
-	_ "github.com/micro-it-freelance/config"
 )
 
 func main() {
-	newRepo := repo.NewAdapter()
-	newService := service.NewAdapter(newRepo)
-	newGRPCCtrl := grpc_ctrl.NewAdatper(newService)
+	// connect to database
+	db, err := sqlx.Connect("pgx", fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable",
+		config.DB.Name, config.DB.User, config.DB.Password, config.DB.Host, config.DB.Port))
+	if err != nil {
+		panic(err)
+	}
 
+	// add listener
 	listener, err := net.Listen("tcp", "9827")
 	if err != nil {
 		panic(err)
 	}
 
-	newGRPCServ := grpc.NewServer()
-	account_service.RegisterAccountServiceServer(newGRPCServ, newGRPCCtrl)
+	//create grpc server
+	GRPCServer := grpc.NewServer()
+	account_service.RegisterAccountServiceServer(GRPCServer,
+		account.NewAccountGRPCHandler(
+			account.NewAccountService(
+				account.NewAccountRepository(db),
+			),
+		))
 
-	if err := newGRPCServ.Serve(listener); err != nil {
+	// serve
+	if err := GRPCServer.Serve(listener); err != nil {
 		panic(err)
 	}
 }
