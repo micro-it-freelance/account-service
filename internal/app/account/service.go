@@ -12,6 +12,6 @@ func NewAccountService(r *AccountRepository) *AccountService {
 	}
 }
 
-func (s *AccountService) Create(ctx context.Context, telegramID int64, username string) error {
+func (s *AccountService) Create(ctx context.Context, telegramID int64, username string) (int64, error) {
 	return s.r.Create(ctx, telegramID, username)
 }
