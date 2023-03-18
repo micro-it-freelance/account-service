@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net"
 
+	_ "github.com/jackc/pgx/v5/stdlib"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/micro-it-freelance/account-service/internal/app/account"
 	"github.com/micro-it-freelance/config"
@@ -12,6 +14,8 @@ import (
 )
 
 func main() {
+	
+
 	// connect to database
 	db, err := sqlx.Connect("pgx", fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable",
 		config.DB.Name, config.DB.User, config.DB.Password, config.DB.Host, config.DB.Port))
@@ -20,12 +24,12 @@ func main() {
 	}
 
 	// add listener
-	listener, err := net.Listen("tcp", "9827")
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", config.GRPC.Port))
 	if err != nil {
 		panic(err)
 	}
 
-	//create grpc server
+	// create grpc server
 	GRPCServer := grpc.NewServer()
 	account_service.RegisterAccountServiceServer(GRPCServer,
 		account.NewAccountGRPCHandler(
@@ -35,6 +39,7 @@ func main() {
 		))
 
 	// serve
+	fmt.Printf("Listen on :%d\n", config.GRPC.Port)
 	if err := GRPCServer.Serve(listener); err != nil {
 		panic(err)
 	}

@@ -3,16 +3,26 @@ version: "3"
 services:
     app:
         build: .
+        environment:
+            DB_NAME: "account-service"
         env_file:
             - ./.env
+        depends_on:
+            db:
+                condition: service_healthy
 
-    # db:
-    #     image: postgres
-    #     restart: always
-    #     environment:
-    #         POSTGRES_USER: $DB_USER
-    #         POSTGRES_PASSWORD: $DB_PASSWORD
-
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_DB: "account-service"
+            POSTGRES_USER: $DB_USER
+            POSTGRES_PASSWORD: $DB_PASSWORD
+        healthcheck:
+            test: ["CMD", "pg_isready", "-U", "$DB_USER", "-d", "account-service"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
     # adminer:
     #     image: adminer
     #     restart: always

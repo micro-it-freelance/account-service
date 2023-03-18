@@ -19,13 +19,13 @@ func NewAccountGRPCHandler(s *AccountService) *AccountGRPCHandler {
 	}
 }
 
-func (h *AccountGRPCHandler) AccountCreate(ctx context.Context, in *account_service.AccountCreateRequest) (*account_service.AccountCreateReply, error) {
+func (h *AccountGRPCHandler) AccountCreate(ctx context.Context, in *account_service.CreateRequest) (*account_service.CreateReply, error) {
 	id, err := h.service.Create(ctx, in.TelegramId, in.Username)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
-	return &account_service.AccountCreateReply{
+	return &account_service.CreateReply{
 		Id: id,
 	}, nil
 }
