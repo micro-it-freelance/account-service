@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    app:
+        build: .
+        environment:
+            DB_NAME: $DB_NAME
+        env_file:
+            - ./.env
+        depends_on:
+            db:
+                condition: service_healthy
+        command: go test ./... -v
