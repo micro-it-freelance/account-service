@@ -4,7 +4,7 @@ services:
     app:
         build: .
         environment:
-            DB_NAME: "account-service"
+            DB_NAME: $DB_NAME
         env_file:
             - ./.env
         depends_on:
@@ -15,16 +15,31 @@ services:
         image: postgres
         restart: always
         environment:
-            POSTGRES_DB: "account-service"
+            POSTGRES_DB: $DB_NAME
             POSTGRES_USER: $DB_USER
             POSTGRES_PASSWORD: $DB_PASSWORD
         healthcheck:
-            test: ["CMD", "pg_isready", "-U", "$DB_USER", "-d", "account-service"]
+            test: ["CMD", "pg_isready", "-U", "$DB_USER", "-d", "$DB_NAME"]
             interval: 10s
             timeout: 5s
             retries: 5
+
+    migrate:
+        image: migrate/migrate:v4.15.1
+        volumes:
+            - ./internal/migration:/migrations
+        depends_on:
+            db:
+                condition: service_healthy
+        command:
+            [
+                "-path=/migrations/",
+                "-database=postgres://$DB_USER:$DB_PASSWORD@db/$DB_NAME?sslmode=disable",
+                "up",
+            ]
+            
     # adminer:
     #     image: adminer
-    #     restart: always
+    #     restart: alwaysЯ
     #     ports:
     #         - 8080:8080
