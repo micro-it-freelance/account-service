@@ -37,7 +37,7 @@ func main() {
 		))
 
 	// serve
-	fmt.Printf("Listen on :%d\n", config.GRPC.Port)
+	fmt.Printf("[account-service] Listen on :%d\n", config.GRPC.Port)
 	if err := GRPCServer.Serve(listener); err != nil {
 		panic(err)
 	}
