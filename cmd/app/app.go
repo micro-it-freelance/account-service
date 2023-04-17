@@ -1,5 +1,3 @@
-// я вернулся!
-
 package main
 
 import (
