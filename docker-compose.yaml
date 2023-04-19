@@ -1,17 +1,17 @@
 version: "3"
 
 services:
-    app:
+    account-service:
         build: .
         environment:
-            DB_NAME: $DB_NAME
+            DB_HOST: account-db
         env_file:
             - ./.env
         depends_on:
             db:
                 condition: service_healthy
 
-    db:
+    account-db:
         image: postgres
         restart: always
         environment:
@@ -34,7 +34,7 @@ services:
         command:
             [
                 "-path=/migrations/",
-                "-database=postgres://$DB_USER:$DB_PASSWORD@db/$DB_NAME?sslmode=disable",
+                "-database=postgres://$DB_USER:$DB_PASSWORD@account-db/$DB_NAME?sslmode=disable",
                 "up",
             ]
             
