@@ -1,6 +1,3 @@
 [submodule "submodules/protoc"]
 	path = submodules/protoc
 	url = https://github.com/micro-it-freelance/protoc
-[submodule "submodules/config"]
-	path = submodules/config
-	url = https://github.com/micro-it-freelance/config
