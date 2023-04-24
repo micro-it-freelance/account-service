@@ -3,30 +3,23 @@ package main
 
 import (
 	"fmt"
-	"net"
 
 	_ "github.com/jackc/pgx/v5/stdlib"
 
-	"github.com/jmoiron/sqlx"
 	"github.com/micro-it-freelance/account-service/internal/app/account"
-	"github.com/micro-it-freelance/config"
+	"github.com/micro-it-freelance/core/config"
+	dbconn "github.com/micro-it-freelance/core/db-conn"
+	grpccore "github.com/micro-it-freelance/core/grpc"
 	"github.com/micro-it-freelance/protoc/out/account_service"
 	"google.golang.org/grpc"
 )
 
 func main() {
 	// connect to database
-	db, err := sqlx.Connect("pgx", fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable",
-		config.DB.Name, config.DB.User, config.DB.Password, config.DB.Host, config.DB.Port))
-	if err != nil {
-		panic(err)
-	}
+	db := dbconn.NewDBConn()
 
 	// add listener
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", config.GRPC.Port))
-	if err != nil {
-		panic(err)
-	}
+	listener := grpccore.NewGRPCListener()
 
 	// create grpc server
 	GRPCServer := grpc.NewServer()
