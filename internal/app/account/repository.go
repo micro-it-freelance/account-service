@@ -46,8 +46,8 @@ func (r *AccountRepository) GetByTelegramID(ctx context.Context, telegramID int6
 		SELECT * FROM accounts WHERE telegram_id=:telegram_id LIMIT 1
 	`
 
-	rows, err := r.db.NamedQueryContext(ctx, query, map[string]interface{}{
-		"telegram_id": telegramID,
+	rows, err := r.db.NamedQueryContext(ctx, query, Account{
+		TelegramID: telegramID,
 	})
 	if err != nil || !rows.Next() {
 		return Account{}, err
