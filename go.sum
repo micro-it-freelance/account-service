@@ -63,6 +63,8 @@ github.com/go-gl/glfw/v3.3/glfw v0.0.0-20191125211704-12ad95a8df72/go.mod h1:tQ2
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200222043503-6f7a984d4dc4/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
 github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
+github.com/goccy/go-json v0.10.2 h1:CrxCmQqYDkv1z7lO7Wbh2HN93uovUHgrECaO5ZrCXAU=
+github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
 github.com/golang/groupcache v0.0.0-20190702054246-869f871628b6/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
 github.com/golang/groupcache v0.0.0-20191227052852-215e87163ea7/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
@@ -151,8 +153,8 @@ github.com/magiconair/properties v1.8.7 h1:IeQXZAiQcpL9mgcAe1Nu6cX9LLw6ExEHKjN0V
 github.com/magiconair/properties v1.8.7/go.mod h1:Dhd985XPs7jluiymwWYZ0G4Z61jb3vdS329zhj2hYo0=
 github.com/mattn/go-sqlite3 v1.14.6 h1:dNPt6NO46WmLVt2DLNpwczCmdV5boIZ6g/tlDrlRUbg=
 github.com/mattn/go-sqlite3 v1.14.6/go.mod h1:NyWgC/yNuGj7Q9rpYnZvas74GogHl5/Z4A/KQRfk6bU=
-github.com/micro-it-freelance/config v0.0.0-20230313200527-c67cd608abe5 h1:Lar/Gu2VFFaq+zifq845SodKlwQg8G2tN12XQpmBE2w=
-github.com/micro-it-freelance/config v0.0.0-20230313200527-c67cd608abe5/go.mod h1:0h2pwkiCCIHmPsjt7s9LseBbtMPT6a5GPJU2rAQBNMI=
+github.com/micro-it-freelance/core v0.0.0-20230430064832-4e041eb0b8c3 h1:426IgOcy8qkcQCS6g6xj7fLuWm1P98+cTDHWNwyEqpw=
+github.com/micro-it-freelance/core v0.0.0-20230430064832-4e041eb0b8c3/go.mod h1:HdNJCOcBTkZJ6nIuIPckqhxB6YsTotaIW1V3x2Uvld4=
 github.com/micro-it-freelance/protoc v0.0.0-20230313195540-16608eac8724 h1:NinvUkikljdI2d9AcSpLveebL0suji4EC1rhVVycWvg=
 github.com/micro-it-freelance/protoc v0.0.0-20230313195540-16608eac8724/go.mod h1:1TroNjlHE0LcRiCeolB81pqz/O2/36YBaxc97tV6HT4=
 github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyuac5Z2hdY=

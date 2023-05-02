@@ -2,26 +2,21 @@ package account
 
 import (
 	"context"
-	"fmt"
 	"math/rand"
 	"testing"
 	"time"
 
-	"github.com/jmoiron/sqlx"
-	"github.com/micro-it-freelance/config"
 	"github.com/stretchr/testify/require"
 
 	_ "github.com/jackc/pgx/v5/stdlib"
+
+	core_db "github.com/micro-it-freelance/core/database"
 )
 
 var random = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func NewTestAccountService() Service {
-	db, err := sqlx.Connect("pgx", fmt.Sprintf("dbname=%s user=%s password=%s host=%s port=%d sslmode=disable",
-		config.DB.Name, config.DB.User, config.DB.Password, config.DB.Host, config.DB.Port))
-	if err != nil {
-		panic(err)
-	}
+	db := core_db.NewDBConnection()
 
 	return NewAccountService(
 		NewAccountRepository(db),

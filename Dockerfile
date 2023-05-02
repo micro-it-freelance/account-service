@@ -1,4 +1,3 @@
-#stage 1
 FROM golang:alpine AS builder
 
 WORKDIR /app

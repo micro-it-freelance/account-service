@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/jackc/pgx/v5 v5.3.1
 	github.com/jmoiron/sqlx v1.3.5
-	github.com/micro-it-freelance/config v0.0.0-20230313200527-c67cd608abe5
+	github.com/micro-it-freelance/core v0.0.0-20230430064832-4e041eb0b8c3
 	github.com/micro-it-freelance/protoc v0.0.0-20230313195540-16608eac8724
 	github.com/stretchr/testify v1.8.1
 	google.golang.org/grpc v1.53.0
@@ -15,6 +15,7 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
+	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect

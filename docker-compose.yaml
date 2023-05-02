@@ -3,12 +3,13 @@ version: "3"
 services:
     account-service:
         build: .
-        environment:
-            DB_HOST: account-db
         env_file:
             - ./.env
+        environment:
+            APP_NAME: account-service
+            DB_HOST: account-db
         depends_on:
-            db:
+            account-db:
                 condition: service_healthy
 
     account-db:
@@ -29,7 +30,7 @@ services:
         volumes:
             - ./internal/migration:/migrations
         depends_on:
-            db:
+            account-db:
                 condition: service_healthy
         command:
             [
