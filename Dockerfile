@@ -6,7 +6,7 @@ COPY go.mod go.sum  ./
 
 COPY go.work go.work.sum ./
 
-COPY ./submodules ./
+COPY ./submodules ./submodules
 
 RUN go mod download
 

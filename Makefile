@@ -1,5 +1,5 @@
 build:
-	docker build -t place-chat/account-service .
+	docker build -t	micro-it-fl/account-service .
 
 up:
 	docker compose up --build
