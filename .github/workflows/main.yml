@@ -18,10 +18,13 @@ jobs:
             - name: Run Docker Compose
               uses: isbang/compose-action@v1.4.1
               with:
-                  compose-file: |
-                      docker-compose.yaml
-                      docker-compose.test.yaml
-                  down-flags: "--build"
+                  compose-file: docker-compose.test.yaml
+              env:
+                  GRPC_PORT: 4599
+                  DB_NAME: micro-it
+                  DB_USER: app
+                  DB_PASSWORD: password
+                  DB_PORT: 5432
 
     build-and-push:
         needs: test
