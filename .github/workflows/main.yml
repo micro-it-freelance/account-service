@@ -1,5 +1,3 @@
-# test 2
-
 name: Build and push
 
 on:
@@ -9,13 +7,23 @@ on:
         branches: [master]
 
 jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run Docker Compose
+              uses: isbang/compose-action@v1.4.1
+              with:
+                  compose-file: |
+                      docker-compose.yaml
+                      docker-compose.test.yaml
+
     build-and-push:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
               uses: actions/checkout@v3
               with:
-                submodules: recursive
+                  submodules: recursive
 
             - name: Login to Docker Hub
               uses: docker/login-action@v1
