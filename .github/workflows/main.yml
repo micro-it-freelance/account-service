@@ -13,9 +13,7 @@ jobs:
             - name: Run Docker Compose
               uses: isbang/compose-action@v1.4.1
               with:
-                  compose-file: |
-                      docker-compose.yaml
-                      docker-compose.test.yaml
+                  compose-file: "./docker-compose.yaml"
 
     build-and-push:
         runs-on: ubuntu-latest
