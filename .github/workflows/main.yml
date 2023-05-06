@@ -18,7 +18,7 @@ jobs:
             - name: Run Docker Compose
               uses: isbang/compose-action@v1.4.1
               with:
-                  compose-file: docker-compose.test.yaml
+                  compose-file: docker-compose.test1.yaml
               env:
                   GRPC_PORT: 4599
                   DB_NAME: micro-it
