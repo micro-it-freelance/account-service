@@ -14,11 +14,13 @@ jobs:
               uses: actions/checkout@v3
               with:
                   submodules: recursive
-                  
+
             - name: Run Docker Compose
               uses: isbang/compose-action@v1.4.1
               with:
-                  compose-file: "./docker-compose.yaml"
+                  compose-file: |
+                      docker-compose.yaml
+                      docker-compose.test.yaml
 
     build-and-push:
         runs-on: ubuntu-latest
