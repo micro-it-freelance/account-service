@@ -21,8 +21,10 @@ jobs:
                   compose-file: |
                       docker-compose.yaml
                       docker-compose.test.yaml
+                  down-flags: "--build"
 
     build-and-push:
+        needs: test
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
