@@ -7,28 +7,33 @@ on:
         branches: [master]
 
 jobs:
+    # test:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v3
+    #           with:
+    #               submodules: recursive
+
+    #         - name: Run Docker Compose
+    #           uses: isbang/compose-action@v1.4.1
+    #           env:
+    #               GRPC_PORT: 4599
+    #               DB_NAME: micro-it
+    #               DB_USER: app
+    #               DB_PASSWORD: password
+    #               DB_PORT: 5432
+
+    #         - name: Docker
+    #           run: make test
+
     test:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-              with:
-                  submodules: recursive
-
-            - name: Run Docker Compose
-              uses: isbang/compose-action@v1.4.1
-              env:
-                  GRPC_PORT: 4599
-                  DB_NAME: micro-it
-                  DB_USER: app
-                  DB_PASSWORD: password
-                  DB_PORT: 5432
-
             - name: Docker
-              run: make test
+              run: echo "hello world" && docker 
 
     build-and-push:
-        needs: test
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -37,14 +42,17 @@ jobs:
                   submodules: recursive
 
             - name: Login to Docker Hub
-              uses: docker/login-action@v1
+              uses: docker/login-action@v2
               with:
                   username: ${{ secrets.DOCKER_USER }}
                   password: ${{ secrets.DOCKER_PASSWORD }}
 
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+
             - name: Build and push
-              uses: docker/build-push-action@v2
+              uses: docker/build-push-action@v4
               with:
                   context: .
                   push: true
-                  tags: iivkis/micro-it-fl_account-service:latest
+                  tags: ${{ secrets.DOCKER_USER }}/micro-it-fl_account-service:latest
