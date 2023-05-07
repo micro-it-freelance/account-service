@@ -6,58 +6,9 @@ services:
         env_file:
             - ./.env
         environment:
-            APP_NAME: account-service
+            APP_NAME: account-service-test
             DB_HOST: account-db
         depends_on:
-            account-db:
-                condition: service_healthy
+            migrate:
+                condition: service_completed_successfully
         command: go test ./... -v
-
-    account-db:
-        image: postgres
-        restart: always
-        environment:
-            POSTGRES_DB: $DB_NAME
-            POSTGRES_USER: $DB_USER
-            POSTGRES_PASSWORD: $DB_PASSWORD
-        healthcheck:
-            test: ["CMD", "pg_isready", "-U", "$DB_USER", "-d", "$DB_NAME"]
-            interval: 10s
-            timeout: 5s
-            retries: 5
-
-    migrate:
-        image: migrate/migrate:v4.15.1
-        volumes:
-            - ./internal/migration:/migrations
-        depends_on:
-            account-db:
-                condition: service_healthy
-        command:
-            [
-                "-path=/migrations/",
-                "-database=postgres://$DB_USER:$DB_PASSWORD@account-db/$DB_NAME?sslmode=disable",
-                "up",
-            ]
-            
-    # adminer:
-    #     image: adminer
-    #     restart: alwaysЯ
-    #     ports:
-    #         - 8080:8080
-
-
-# version: "3"
-
-# services:
-#     account-service:
-#         build: .
-#         env_file:
-#             - ./.env
-#         environment:
-#             APP_NAME: account-service-test
-#             DB_HOST: account-db
-#         depends_on:
-#             account-db:
-#                 condition: service_healthy
-#         command: go test ./... -v

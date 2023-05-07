@@ -9,8 +9,8 @@ services:
             APP_NAME: account-service
             DB_HOST: account-db
         depends_on:
-            account-db:
-                condition: service_healthy
+            migrate:
+                condition: service_completed_successfully
 
     account-db:
         image: postgres

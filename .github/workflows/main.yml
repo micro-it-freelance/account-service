@@ -7,26 +7,6 @@ on:
         branches: [master]
 
 jobs:
-    # test:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v3
-    #           with:
-    #               submodules: recursive
-
-    #         - name: Run Docker Compose
-    #           uses: isbang/compose-action@v1.4.1
-    #           env:
-    #               GRPC_PORT: 4599
-    #               DB_NAME: micro-it
-    #               DB_USER: app
-    #               DB_PASSWORD: password
-    #               DB_PORT: 5432
-
-    #         - name: Docker
-    #           run: make test
-
     test:
         runs-on: ubuntu-latest
         steps:
@@ -36,9 +16,10 @@ jobs:
                   submodules: recursive
 
             - name: Test
-              run: make test
+              run: make test && docker compose down
 
     build-and-push:
+        needs: test
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
