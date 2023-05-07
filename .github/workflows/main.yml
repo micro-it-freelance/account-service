@@ -16,6 +16,7 @@ jobs:
                   submodules: recursive
 
             - name: Test
+              if: always()
               run: make test
 
     build-and-push:
