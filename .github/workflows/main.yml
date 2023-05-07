@@ -16,7 +16,7 @@ jobs:
                   submodules: recursive
 
             - name: Test
-              run: make test && docker compose down
+              run: make test
 
     build-and-push:
         needs: test
