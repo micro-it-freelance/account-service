@@ -1,4 +1,4 @@
-SERVICE_NAME := account-service
+include ./submodules/core/deployments/account-service/.env
 
 up:
 	docker compose up --build
