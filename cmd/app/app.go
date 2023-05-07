@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// connect to database
-	db := core_db.NewDBConnection()
+	db := core_db.NewDB()
 
 	// add listener
 	listener := core_grpc.NewGRPCListener()

@@ -16,7 +16,7 @@ import (
 var random = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func NewTestAccountService() Service {
-	db := core_db.NewDBConnection()
+	db := core_db.NewDB()
 
 	return NewAccountService(
 		NewAccountRepository(db),

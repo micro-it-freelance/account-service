@@ -3,8 +3,7 @@ version: "3"
 services:
     account-service:
         build: .
-        env_file:
-            - ./.env
+        env_file: ./.env
         environment:
             APP_NAME: account-service-test
             DB_HOST: account-db
