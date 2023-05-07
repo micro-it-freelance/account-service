@@ -32,4 +32,4 @@ jobs:
               with:
                   context: .
                   push: true
-                  tags: ${{ secrets.DOCKER_USER }}/micro-it-freelance_${{ vars.SERVICE_NAME }}:${{ github.sha }}
+                  tags: ${{ secrets.DOCKER_USER }}/micro-it-freelance_${{ github.event.repository.name }}:latest
