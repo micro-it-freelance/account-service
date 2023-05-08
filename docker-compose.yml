@@ -2,14 +2,12 @@ version: "3"
 
 services:
     account-service:
-        build: .
-        env_file:
-            - ./.env
+        image: iivkis/micro-it-freelance_account-service:latest
+        env_file: .env
         environment:
-            APP_NAME: account-service
             DB_HOST: account-db
         depends_on:
-            migrate:
+            account-migrate:
                 condition: service_completed_successfully
 
     account-db:
@@ -25,10 +23,10 @@ services:
             timeout: 5s
             retries: 5
 
-    migrate:
-        image: migrate/migrate:v4.15.1
+    account-migrate:
+        image: migrate/migrate
         volumes:
-            - ./internal/migration:/migrations
+            - ./submodules/core/migrations/account-service:/migrations
         depends_on:
             account-db:
                 condition: service_healthy
@@ -38,9 +36,3 @@ services:
                 "-database=postgres://$DB_USER:$DB_PASSWORD@account-db/$DB_NAME?sslmode=disable",
                 "up",
             ]
-            
-    # adminer:
-    #     image: adminer
-    #     restart: alwaysЯ
-    #     ports:
-    #         - 8080:8080
